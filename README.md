@@ -237,3 +237,33 @@ function App() {
 }
 
 export default App;
+
+SERVER.js
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = process.env.PORT || 8000;
+
+// Middleware
+app.use(bodyParser.json());
+
+// Routes
+app.get('/', (req, res) => {
+  res.send('Hello from the server!');
+});
+
+// Sample API route
+app.post('/api/submit-form', (req, res) => {
+  const data = req.body;
+  // Process the data or save it to a database
+  console.log('Received data:', data);
+  // Send back a response
+  res.json({ message: 'Form submitted successfully!' });
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
